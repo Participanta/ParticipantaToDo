@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url:'http://10.240.6.10:8081/repository/AutelAndroid/') {
+            authentication(userName: "admin", password: "admin123")
+        }
+        def artifactId = "testPlugin"
+        pom.version = "2.0.1"
+        pom.artifactId = artifactId
+        pom.groupId = "com.test.plugin"
+    }
+}
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
